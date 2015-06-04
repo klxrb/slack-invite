@@ -16,6 +16,8 @@ class SlackInvite < Sinatra::Base
     invitee = Invitee.new
     invitee.email = params[:email].gsub!(/\s/,'+')
 
+    puts invitee.email
+
     if invitee.valid?
       post_params = {
         email: invitee.email,
