@@ -44,7 +44,6 @@ PLATFORMS
 
 DEPENDENCIES
   httparty
-  json
   minitest (~> 5.2)
   rack
   rack-test (~> 0.6)
