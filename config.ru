@@ -8,7 +8,6 @@ Bundler.require
 require "find"
 
 %w{config/initializers lib}.each do |load_path|
-  puts load_path
   Find.find(load_path) { |f|
     require f unless f.match(/\/\..+$/) || File.directory?(f)
   }
