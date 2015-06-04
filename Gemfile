@@ -1,6 +1,7 @@
 source "https://rubygems.org/"
 
 # App Stack
+gem "rack"
 gem "sinatra", "~> 1.4"
 gem "httparty"
 gem "valid_email"
