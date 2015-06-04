@@ -7,8 +7,6 @@ class SlackInvite < Sinatra::Base
   get "/invite.json" do
     content_type :json
 
-    param :email,     String, required: true, blank: false
-
     class Invitee
       include ActiveModel::Validations
       attr_accessor :email
