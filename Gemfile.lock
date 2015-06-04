@@ -46,6 +46,7 @@ DEPENDENCIES
   httparty
   json
   minitest (~> 5.2)
+  rack
   rack-test (~> 0.6)
   rake (~> 10.0)
   sinatra (~> 1.4)
