@@ -1,6 +1,5 @@
 class SlackInvite < Sinatra::Base
   SLACK_API_ENDPOINT = "https://#{ENV['SLACK_TEAM_NAME']}.slack.com/api/users.admin.invite"
-  SLACK_CHANNEL = 'C056L5E1X'
 
   set :public_folder => "public", :static => true
 
@@ -20,7 +19,7 @@ class SlackInvite < Sinatra::Base
     if invitee.valid?
       post_params = {
         email: invitee.email,
-        channels: SLACK_CHANNEL,
+        channels: ENV['SLACK_CHANNEL'],
         set_active: true,
         _attempts: 1,
         token: ENV['SLACK_TEAM_AUTH_TOKEN']
