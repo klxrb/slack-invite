@@ -5,7 +5,6 @@ class SlackInvite < Sinatra::Base
   set :public_folder => "public", :static => true
 
   get "/invite.json" do
-    content_type :json
 
     class Invitee
       include ActiveModel::Validations
@@ -25,10 +24,21 @@ class SlackInvite < Sinatra::Base
         _attempts: 1,
         token: ENV['SLACK_TEAM_AUTH_TOKEN']
       }
-      response = HTTParty.post(SLACK_API_ENDPOINT, body: post_params)
-      "#{params[:callback]}(\"#{response.body}\")"
+      http_response = HTTParty.post(SLACK_API_ENDPOINT, body: post_params)
+      data = http_response.body
     else
-      "#{params[:callback]}(\"{'ok': false, 'error': 'invalid_email'}\")"
+      data = {'ok': false, 'error': 'invalid_email'}
     end
+
+    callback = params.delete('callback')
+    if callback
+      content_type :js
+      response = "#{callback}(#{data})"
+    else
+      content_type :json
+      response = data
+    end
+
+    response
   end
 end

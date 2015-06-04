@@ -7,7 +7,6 @@ gem "rack"
 gem "sinatra", "~> 1.4"
 gem "httparty"
 gem "valid_email"
-gem "json"
 
 
 group :development do
