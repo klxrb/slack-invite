@@ -1,10 +1,13 @@
 class SlackInvite < Sinatra::Base
+
   SLACK_API_ENDPOINT = "https://#{ENV['SLACK_TEAM_NAME']}.slack.com/api/users.admin.invite"
 
   set :public_folder => "public", :static => true
 
-  post "/invite.json" do
+  get "/invite.json" do
     content_type :json
+
+    param :email,     String, required: true, blank: false
 
     class Invitee
       include ActiveModel::Validations
@@ -25,9 +28,9 @@ class SlackInvite < Sinatra::Base
         token: ENV['SLACK_TEAM_AUTH_TOKEN']
       }
       response = HTTParty.post(SLACK_API_ENDPOINT, body: post_params)
-      response.body
+      "#{params[:callback]}(\"#{response.body}\")"
     else
-      {ok: false, error: "invalid_email"}.to_json
+      "#{params[:callback]}(\"{'ok': false, 'error': 'invalid_email'}\")"
     end
   end
 end
