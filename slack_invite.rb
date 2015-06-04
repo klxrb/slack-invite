@@ -27,7 +27,7 @@ class SlackInvite < Sinatra::Base
       http_response = HTTParty.post(SLACK_API_ENDPOINT, body: post_params)
       data = http_response.body
     else
-      data = {'ok': false, 'error': 'invalid_email'}
+      data = {'ok': false, 'error': 'invalid_email'}.to_json
     end
 
     callback = params.delete('callback')
