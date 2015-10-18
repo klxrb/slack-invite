@@ -1,5 +1,5 @@
 # Slack Invite
-Simple endpoint for inviting yourself to any [Slack](https://slack.com/) group built with [Sinatra](http://www.sinatrarb.com/). Great for open & free groups.
+Simple endpoint for inviting yourself to any [Slack](https://slack.com/) group. Built with [Sinatra](http://www.sinatrarb.com/). Great for open & free groups.
 
 Example: http://rubybrigade.my/slack_invite/
 
